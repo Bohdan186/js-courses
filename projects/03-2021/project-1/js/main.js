@@ -134,16 +134,19 @@ function sortWord(str) {
 console.log(sortWord('Lorem'));
 
 
-console.log('Task 14');
+// console.log('Task 14');
 
-function removeDuplicate(str) {
+// function removeDuplicate(str) {
 
-	let arr = str.split(', ');
+// 	let arr = str.split(', ');
+
+// 	arr.forEach(element => {
+// 		if (element )
+// 	});
 
 
 
-
-	  return result;
-}
+// 	return result;
+// }
 	
-console.log(removeDuplicate('вишня, груша, слива, груша'));
+// console.log(removeDuplicate('вишня, груша, слива, груша'));
