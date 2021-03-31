@@ -214,9 +214,7 @@ console.log(lengthWordInStr('Lorem ipsum dolor sit amet consectetur'));
 console.log('====================Task 19');
 
 function numberWordsInStr(str) {
-	let array = str.split(' ');
-
-	return array.length;
+	return str.split(' ').length;
 }
 
 console.log(numberWordsInStr('Lorem ipsum dolor sit amet consectetur'));
@@ -225,9 +223,7 @@ console.log(numberWordsInStr('Lorem ipsum dolor sit amet consectetur'));
 console.log('====================Task 20');
 
 function changeDateFormat(date) {
-	let array = date.split('-');
-
-	return array[2] + '.' + array[1] + '.' + array[0];
+	return date.split('-').reverse().join('.');
 }
 
 console.log(changeDateFormat('31-12-2030'));
@@ -289,137 +285,3 @@ function howOld(birthday) {
 }
 
 console.log(howOld('17.08.1996'));
-
-//	-----------------------------------------------------
-
-//============ Task 1 ===============
-
-let btn = document.getElementsByClassName('count')[0];
-
-btn.addEventListener('click', function() {
-	let numb1 = parseInt(document.getElementsByClassName('numb1')[0].value);
-	let numb2 = parseInt(document.getElementsByClassName('numb2')[0].value);
-	let numb3 = parseInt(document.getElementsByClassName('numb3')[0].value);
-
-	numb1 && numb2 && numb3 ? document.getElementsByClassName('result')[0].value = numb1 + numb2 + numb3
-	: alert('Заповніть всі поля числами !');
-
-});
-
-
-//============ Task 2 ===============
-
-let btn2 = document.getElementsByClassName('count2')[0];
-
-btn2.addEventListener('click', function() {
-	let numb = document.getElementsByClassName('summ-namb-input')[0].value;
-	let array = numb.split('');
-
-	if (array.length && isNaN(numb) === false) {
-		let result = 0;
-
-		for (let i = 0; i < array.length; i++) {
-			result += parseInt(array[i]);
-		}
-	
-		document.getElementsByClassName('result2')[0].value = result;
-	}else {
-		alert('Введіть число');
-	}
-});
-
-
-//============ Task 3 ===============
-
-let btn3 = document.getElementsByClassName('arith-mean')[0];
-
-btn3.addEventListener('click', function() {
-	let numb = document.getElementsByClassName('arith-mean-input')[0].value;
-	let array = numb.split(',');
-	let summa = 0;
-
-	for (let i = 0; i < array.length; i++) {
-		summa += parseInt(array[i]);
-	}
-	
-	document.getElementsByClassName('result3')[0].value = summa / array.length;
-});
-
-
-//============ Task 4 ===============
-
-let btn4 = document.getElementsByClassName('split-name')[0];
-
-btn4.addEventListener('click', function() {
-	let numb = document.getElementsByClassName('full-name')[0].value;
-	let array = numb.split(' ');
-
-	if ( 3 !== array.length) {
-		alert('Введіть повне ім\'я !!!')
-	}else {
-		document.getElementsByClassName('first-name')[0].value = array[0];
-		document.getElementsByClassName('last-name')[0].value = array[1];
-		document.getElementsByClassName('surname')[0].value = array[2];
-	}
-});
-
-
-//============ Task 5 ===============
-
-let btn5 = document.getElementsByClassName('fix-name')[0];
-
-btn5.addEventListener('click', function() {
-	let name = document.getElementsByClassName('fix-name-input')[0].value;
-	let array = name.split(' ');
-
-	for (let i = 0; i < array.length; i++) {
-		array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
-	}
-
-	document.getElementsByClassName('fix-name-input')[0].value = array.join(' ');
-});
-
-
-//============ Task 6 ===============
-
-let btn6 = document.getElementsByClassName('numb-word')[0];
-
-btn6.addEventListener('click', function() {
-	let str = document.getElementsByClassName('numb-word-input')[0].value;
-	let array = str.split(' ').filter(function (arrayItem) {
-		return arrayItem !== "";
-	});
-
-	document.getElementsByClassName('result4')[0].value = array.length;
-});
-
-
-//============ Task 7 ===============
-
-let btn7 = document.getElementsByClassName('numb-symbol-in-long-word')[0];
-
-btn7.addEventListener('click', function() {
-	let str = document.getElementsByClassName('numb-symbol-in-long-word-input')[0].value;
-	let len = 0;
-	let array = str.split(' ');
-
-	for (let i = 0; i < array.length; i++) {
-		array[i].length > len ? len = array[i].length : '';
-	}
-
-	document.getElementsByClassName('result5')[0].value = len;
-});
-
-
-//============ Task 8 ===============
-
-let btn8 = document.getElementsByClassName('what-day')[0];
-
-btn8.addEventListener('click', function () {
-	let dateInput = document.getElementsByClassName('what-day-input')[0].value;
-	let date = new Date(dateInput);
-	let options = { weekday: 'long' };
-	let searchDate = new Intl.DateTimeFormat('uk-UK', options).format(date);
-	
-	document.getElementsByClassName('result6')[0].value = searchDate;
-});
