@@ -6,9 +6,9 @@ btn.addEventListener('click', function() {
 	let numb1 = parseInt(document.getElementsByClassName('numb1')[0].value);
 	let numb2 = parseInt(document.getElementsByClassName('numb2')[0].value);
 	let numb3 = parseInt(document.getElementsByClassName('numb3')[0].value);
+	let $result = document.getElementsByClassName('result')[0];
 
-	numb1 && numb2 && numb3 ? document.getElementsByClassName('result')[0].value = numb1 + numb2 + numb3
-	: alert('Заповніть всі поля числами !');
+	$result.value = numb1 && numb2 && numb3 ? numb1 + numb2 + numb3 : alert('Заповніть всі поля числами !');
 
 });
 
@@ -22,7 +22,6 @@ btn2.addEventListener('click', function() {
 	let array = numb.split('').filter(function (arrayItem) {
 		return arrayItem !== " ";
 	});
-
 
 	if (array.length && isNaN(numb) === false) {
 		let result = 0;
@@ -132,6 +131,7 @@ let btn8 = document.getElementsByClassName('what-day')[0];
 
 btn8.addEventListener('click', function () {
 	let dateInput = document.getElementsByClassName('what-day-input')[0].value;
+	dateInput = dateInput.split('.').reverse().join('.');
 	let date = new Date(dateInput);
 	let searchDate = new Intl.DateTimeFormat('uk-UK', { weekday: 'long' }).format(date);
 	
@@ -153,12 +153,8 @@ function changeWidth() {
 	console.log(this.className);
 };
 
-let img1 = document.getElementsByClassName('img1')[0];
-let img2 = document.getElementsByClassName('img1')[1];
-let img3 = document.getElementsByClassName('img1')[2];
-let img4 = document.getElementsByClassName('img1')[3];
+let $images = document.getElementsByClassName('images');
 
-img1.addEventListener('click', changeWidth);
-img2.addEventListener('click', changeWidth);
-img3.addEventListener('click', changeWidth);
-img4.addEventListener('click', changeWidth);
+for (let i = 0; i < $images.length; i++) {
+	$images[i].addEventListener('click', changeWidth);
+}
