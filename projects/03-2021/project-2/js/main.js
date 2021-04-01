@@ -3,7 +3,7 @@
 let $btn1 = document.getElementsByClassName('call-alert')[0];
 
 $btn1.addEventListener('click', function() {
-	alert('Який текст');
+	alert('Якийсь текст');
 });
 
 //============ Task 2 ===============
@@ -12,8 +12,8 @@ let $btn2 = document.getElementsByClassName('call-alert-2')[0];
 
 $btn2.addEventListener('click', function() {
 	let inputText = document.getElementsByClassName('call-alert-2-input')[0].value;
-
-	alert(inputText);
+	
+	!inputText ? alert('Введіть текст') : alert(inputText);
 });
 
 
@@ -22,9 +22,9 @@ $btn2.addEventListener('click', function() {
 let $btn3 = document.getElementsByClassName('square-numb')[0];
 
 $btn3.addEventListener('click', function() {
-	let inputText = document.getElementsByClassName('square-numb-input')[0].value;
-	inputText = inputText ** 2;
-	alert(inputText);
+	let inputNumb = document.getElementsByClassName('square-numb-input')[0].value;
+
+	alert(isNaN(inputNumb) ? 'Введіть число' : inputNumb ** 2);
 });
 
 
@@ -65,11 +65,11 @@ let $btn7 = document.getElementsByClassName('lock')[0];
 let $btn8 = document.getElementsByClassName('un-lock')[0];
 
 $btn7.addEventListener('click', function() {
-	document.getElementsByClassName('lock-un-lock-input')[0].readOnly = true;
+	document.getElementsByClassName('lock-un-lock-input')[0].disabled = true;
 });
 
 $btn8.addEventListener('click', function() {
-	document.getElementsByClassName('lock-un-lock-input')[0].readOnly = false;
+	document.getElementsByClassName('lock-un-lock-input')[0].disabled = false;
 });
 
 
@@ -140,9 +140,11 @@ $btn13.addEventListener('click', function() {
 let $btn14 = document.getElementsByClassName('change-input-btn')[0];
 
 $btn14.addEventListener('click', function() {
-	document.getElementsByClassName('change-input')[0].style.color = 'red';
-	document.getElementsByClassName('change-input')[0].style.width = '400px';
-	document.getElementsByClassName('change-input')[0].value = 'Some new text';
+	let $changeElement = document.getElementsByClassName('change-input')[0];
+	
+	$changeElement.style.color = 'red';
+	$changeElement.style.width = '400px';
+	$changeElement.value = 'Some new text';
 });
 
 
@@ -158,11 +160,101 @@ $btn15.addEventListener('click', function() {
 
 //============ Task 15 ===============
 
-// let $btn16 = document.getElementsByClassName('show-input-class')[0];
+let $btn16 = document.getElementsByClassName('show-input-class')[0];
 
-// $btn16.addEventListener('click', function() {
-// 	let showInput = document.getElementsByClassName('show-input')[0];
+$btn16.addEventListener('click', function() {
+	$btn16.innerHTML = document.getElementsByClassName('show-input')[0].className;
+});
 
-// 	$btn16.innerHTML = ;
-// });
 
+//============ Task 16 ===============
+
+let $btn17 = document.getElementsByClassName('pushForm')[0];
+
+$btn17.addEventListener('click', function() {
+	let $form1 = document.getElementsByClassName('form-1')[0];
+
+	let firstName = $form1[0].value;
+	let lastName = $form1[1].value;
+	let birthdayDate = new Date($form1[2].value);
+	let today = new Date();
+	let birthdayYear = birthdayDate.getYear() + 1900;
+	let thisYear = today.getYear() + 1900;
+	let place = $form1[3].value;
+	let phoneNumber = $form1[4].value;
+	
+	if (!isNaN(firstName) || !isNaN(lastName)) {
+		alert('Перевірте Ім\'я та Прізвище !');
+
+	} else if (birthdayYear > thisYear) {
+		alert('Введіть справжній рік народження !');
+
+	} else if (isNaN(birthdayYear)) {
+		alert('Введіть рік народження'); 
+
+	} else if (isNaN(phoneNumber)) {
+		alert('Перевірте телефон !');
+
+	}else {
+		alert(` Ім\'я: ${firstName} \n Прізвище: ${lastName} \n Рік народження: ${birthdayYear} \n Місце проживання: ${place} \n Номер телефону: ${phoneNumber}`);
+	}
+});
+
+
+//============ Task 17 ===============
+let $btn18 = document.getElementsByClassName('registration')[0];
+
+$btn18.addEventListener('click', function() {
+	let $form1 = document.getElementsByClassName('form-2')[0];
+
+	if ($form1[1].value !== $form1[2].value){
+		alert('Паролі не співпадають!');
+	}else {
+		alert(` Логін: ${$form1[0].value} \n Пароль:  ${$form1[1].value}`);
+	}
+
+});
+
+
+//============ Task 18 ===============
+
+let $action = document.getElementsByClassName('action');
+console.log($action);
+
+for (let i = 0; i < $action.length; i++) {
+	
+	$action[i].addEventListener('click', function () {
+		$action[i].classList.toggle('active');
+	});
+}
+
+let $equals = document.getElementsByClassName('equals')[0];
+$equals.addEventListener('click', function () {
+	let $action = document.getElementsByClassName('active')[0].innerHTML;
+	let number1 = parseInt(document.getElementsByClassName('number1')[0].value);
+	let number2 = parseInt(document.getElementsByClassName('number2')[0].value);
+
+	if ($action === '+') {
+		alert(number1 + number2);
+	}else if ($action === '-') {
+		alert(number1 - number2);
+	}else if ($action === '*') {
+		alert(number1 * number2);
+	}else if ($action === ':') {
+		alert(number1 / number2);
+	}
+});
+
+
+//============ Task 19 ===============
+
+let $popUp = document.getElementsByClassName('pop-up')[0];
+$popUp.addEventListener('click', function () {
+	let $wrapper = document.getElementsByClassName('wrapper')[0];
+	$wrapper.classList.add('show');
+});
+
+let $wrapper = document.getElementsByClassName('wrapper')[0];
+$wrapper.addEventListener('click', function () {
+	$wrapper.classList.remove('show');
+});

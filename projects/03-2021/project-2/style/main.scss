@@ -1,0 +1,298 @@
+$primary-color: #36B1F5;
+$transition: all .4s ease;
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Cabin', sans-serif;
+	background-color: #F7F7F7;
+	color: rgba(16, 16, 16, 0.9);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.2;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-bottom: 20px;
+	font-weight: 600;
+}
+
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 42px;
+}
+
+h3 {
+	font-size: 36px;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+h5 {
+	font-size: 24px;
+}
+
+h6 {
+	font-size: 18px;
+}
+
+.action {
+	margin-bottom: 20px;
+}
+
+.absolute {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+// ------------------------------------------
+// MIXIN
+// ------------------------------------------
+
+@mixin hover-scale {
+	
+	&:hover {
+		
+		.img-inner {
+			transform: scale(1.1);
+		}
+	}
+
+	.img-wrapper {
+		overflow: hidden;
+	}
+
+	.img-inner {
+		transition: $transition;
+
+		img {
+			width: 100%;
+		}
+	}
+}
+
+// ------------------------------------------
+// GRID
+// ------------------------------------------
+
+.container {
+	max-width: 1200px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.row {
+	display: flex;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.col-3 {
+	min-width: 25%;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.col-4 {
+	max-width: 33.333333333%;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.col-6 {
+	max-width: 50%;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.spacing-20 {
+	margin-bottom: 20px;
+
+	> [class*="col-"] {
+		margin-bottom: 20px;
+	}
+}
+
+// ------------------------------------------
+// FORM
+// ------------------------------------------
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=url],
+input[type=date],
+input[type=time],
+select,
+textarea{
+	display: flex;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid rgba(16, 16, 16, 0.1);
+	border-radius: 5px;
+	outline: none;
+	margin-bottom: 20px;
+}
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=url],
+input[type=date],
+input[type=time],
+select {
+	height: 42px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+label {
+	display: inline-block;
+	font-weight: 600;
+
+	span {
+		color: #E44242;
+	}
+}
+
+textarea {
+	padding: 20px;
+}
+
+// ------------------------------------------
+// BUTTONS
+// ------------------------------------------
+
+input[type=button],
+input[type=submit],
+button,
+.button {
+	display: inline-block;
+	padding: 12px 20px;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+	background-color: $primary-color;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 600;
+	color: #fff;
+	text-decoration: none;
+	text-transform: capitalize;
+	transition: $transition;
+	cursor: pointer;
+
+	&:hover {
+		background-color: darken($color: $primary-color, $amount: 20%);
+	}
+
+	& + & {
+		margin-left: 10px;
+	}
+}
+
+// ------------------------------------------
+// LINK
+// ------------------------------------------
+
+a {
+	color: $primary-color;
+	text-decoration: none;
+	transition: $transition;
+	
+	&:hover {
+		color: darken($color: $primary-color, $amount: 20%);
+	}
+
+	&.button {
+		
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+
+// ------------------------------------------
+// COLOR SCHEME
+// ------------------------------------------
+
+.color-scheme-light {
+	color: #FFF;
+
+	h1,h2,h3,h4,h5,h6,span {
+		color: #FFF;
+	}
+
+	p, ul {
+		color: rgba(255, 255, 255, 1);
+	}
+
+	input[type=text], input::placeholder{
+		color: rgba(255, 255, 255, .5);
+	}
+}
+
+
+// ------------------------------------------
+// BANNERS
+// ------------------------------------------
+.wrapper {
+	background: rgba(16, 16, 16, .6);
+	position: fixed;
+	display: none;
+
+	&.show {
+		display: block;
+	}
+}
+.banner {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	@include hover-scale;
+	z-index: 1;
+	
+
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
+
+	.img-wrapper {
+		border-radius: 5px;
+	}
+
+	.img-inner {
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 20px;
+	}
+
+	h4 {
+		margin-bottom: 0;
+	}
+}
