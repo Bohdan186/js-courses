@@ -124,7 +124,7 @@ $imgWithHover.addEventListener('mouseout', function() {
 //============ Task 12 ===============
 
 let $btn12 = document.getElementsByClassName('hide')[0];
-let $btn13 = document.getElementsByClassName('show')[0];
+let $btn13 = document.getElementsByClassName('showbtn')[0];
 
 $btn12.addEventListener('click', function() {
 	document.getElementsByClassName('hide-show-input')[0].style.display = 'none';
@@ -183,8 +183,8 @@ $btn17.addEventListener('click', function() {
 	let place = $form1[3].value;
 	let phoneNumber = $form1[4].value;
 	
-	if (!isNaN(firstName) || !isNaN(lastName)) {
-		alert('Перевірте Ім\'я та Прізвище !');
+	if (!firstName || !lastName) {
+		alert('Введіть Ім\'я та Прізвище !');
 
 	} else if (birthdayYear > thisYear) {
 		alert('Введіть справжній рік народження !');
@@ -192,7 +192,10 @@ $btn17.addEventListener('click', function() {
 	} else if (isNaN(birthdayYear)) {
 		alert('Введіть рік народження'); 
 
-	} else if (isNaN(phoneNumber)) {
+	} else if (!place) {
+		alert('Введіть місце проживання !');
+
+	} else if (isNaN(phoneNumber) || !phoneNumber) {
 		alert('Перевірте телефон !');
 
 	}else {
@@ -222,26 +225,34 @@ let $action = document.getElementsByClassName('action');
 console.log($action);
 
 for (let i = 0; i < $action.length; i++) {
-	
+
 	$action[i].addEventListener('click', function () {
+		for (let j = 0; j < $action.length; j++) {
+			$action[j].classList.remove('active');	
+		}
+
 		$action[i].classList.toggle('active');
 	});
 }
 
 let $equals = document.getElementsByClassName('equals')[0];
 $equals.addEventListener('click', function () {
-	let $action = document.getElementsByClassName('active')[0].innerHTML;
+	let $action = document.getElementsByClassName('active')[0].getAttribute('data-value');
 	let number1 = parseInt(document.getElementsByClassName('number1')[0].value);
 	let number2 = parseInt(document.getElementsByClassName('number2')[0].value);
 
-	if ($action === '+') {
-		alert(number1 + number2);
-	}else if ($action === '-') {
-		alert(number1 - number2);
-	}else if ($action === '*') {
-		alert(number1 * number2);
-	}else if ($action === ':') {
-		alert(number1 / number2);
+	if (isNaN(number1) || isNaN(number2)) {
+		alert('Введіть числа!');
+	}else {
+		if ($action === '+') {
+			alert(number1 + number2);
+		}else if ($action === '-') {
+			alert(number1 - number2);
+		}else if ($action === '*') {
+			alert(number1 * number2);
+		}else if ($action === ':') {
+			alert(number1 / number2);
+		}	
 	}
 });
 
@@ -249,12 +260,22 @@ $equals.addEventListener('click', function () {
 //============ Task 19 ===============
 
 let $popUp = document.getElementsByClassName('pop-up')[0];
+
+let $banner = document.getElementsByClassName('banner')[0];
+let $wrapper = document.getElementsByClassName('wrapper')[0];
+let $btnClose = document.getElementsByClassName('btn-close')[0];
+
 $popUp.addEventListener('click', function () {
-	let $wrapper = document.getElementsByClassName('wrapper')[0];
+	$banner.classList.add('show');
 	$wrapper.classList.add('show');
 });
 
-let $wrapper = document.getElementsByClassName('wrapper')[0];
 $wrapper.addEventListener('click', function () {
 	$wrapper.classList.remove('show');
+	$banner.classList.remove('show');
+});
+
+$btnClose.addEventListener('click', function () {
+	$wrapper.classList.remove('show');
+	$banner.classList.remove('show');
 });

@@ -206,10 +206,11 @@ a.button:hover {
 .wrapper {
   background: rgba(16, 16, 16, 0.6);
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: none;
-}
-.wrapper.show {
-  display: block;
 }
 
 .banner {
@@ -218,6 +219,7 @@ a.button:hover {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  display: none;
 }
 .banner:hover .img-inner {
   transform: scale(1.1);
@@ -248,4 +250,8 @@ a.button:hover {
 }
 .banner h4 {
   margin-bottom: 0;
+}
+
+.show {
+  display: block;
 }

@@ -1,0 +1,210 @@
+// ------------------------------------------------------------------------------------------------
+// CLASS HELPER
+// ------------------------------------------------------------------------------------------------
+
+.primary-color {
+	color: $primary-color;
+}
+
+.absolute {
+	@include absolute;
+}
+
+.spacing-bottom-40 {
+
+	> [class*="col-"] {
+		margin-bottom: 40px;
+	}
+}
+
+.spacing-bottom-30 {
+	
+	> [class*="col-"] {
+		margin-bottom: 30px;
+	}	
+	
+	.spacing-bottom-0 {
+		margin-bottom: 0;
+	}
+}
+
+
+
+// ------------------------------------------------------------------------------------------------
+// PRIMARY PAGE STYLE
+// ------------------------------------------------------------------------------------------------
+
+.container {
+	max-width: 1210px;
+}
+
+// ------------------------------------------
+// PRODUCTS
+// ------------------------------------------
+
+.content-list {
+
+	> div {
+		display: none;
+
+		&.active {
+			display: flex;
+		}
+	}
+}
+
+.products {
+	margin-bottom: 40px;
+}
+
+.head-section {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 40px;
+
+	.title {
+		margin-right: 20px;
+		margin-bottom: 0;
+	}
+}
+
+.tabs-menu {
+	list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+	display: flex;
+
+
+	li {
+		position: relative;
+		margin-bottom: 0;
+
+		a {
+			
+			position: relative;
+			color: rgba(16, 16, 16, 0.7);
+			padding-left: 20px;
+			padding-right: 20px;
+
+			span {
+
+				&::after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 18px;
+					right: 18px;
+					height: 3px;
+					background-color: $primary-color;
+					opacity: 0;
+					visibility: hidden;
+					transition: $transition;
+				}
+			}
+		}
+
+		&.active {
+			a {
+				font-weight: 500;
+			}
+		}
+
+		&:hover,
+		&.active {
+			
+			a {
+				color:rgba(16, 16, 16, 0.9);
+
+				span {
+					&::after {
+						opacity: 1;
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// ------------------------------------------
+// ACCORDION
+// ------------------------------------------
+
+.accordions {
+	margin-bottom: 120px;
+}
+
+.accordion, .accordion2 {
+	padding: 20px 10px;
+	border-bottom: 1px solid rgba(16, 16, 16, 0.05);
+	cursor: pointer;
+
+	h6 {
+		margin-bottom: 0;
+		font-weight: 400;
+	}
+
+	p {
+		display: none;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	
+	&.open {
+
+		.accordion-title { 
+			margin-bottom: 20px;
+		}
+
+		button {
+
+			&.accordions-arrow {
+				i {
+					transform: rotate(180deg);
+				}
+			}
+		}
+
+		p {
+			display: block;
+		}
+	}
+
+	.accordion-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		i {
+			font-size: 24px;
+			color:rgba(16, 16, 16, 0.6)
+		}
+	}
+}
+
+button {
+
+	&.accordions-arrow {
+		padding: 5px 15px;
+	}
+}
+
+// ------------------------------------------
+// SLIDER
+// ------------------------------------------
+
+.slider {
+
+	> div {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+}
