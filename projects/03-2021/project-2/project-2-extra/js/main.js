@@ -5,11 +5,9 @@ let $contentList = document.querySelectorAll('.content-list>div');
 for (let i = 0; i < $tabsList.length; i++) {
 
 	$tabsList[i].addEventListener('click', function () {
-		for (let j = 0; j < $tabsList.length; j++) {
-			$tabsList[j].classList.remove('active');	
-		}
+		removeSiblingClass($tabsList[i], 'active');
 
-		$tabsList[i].classList.toggle('active');
+		$tabsList[i].classList.add('active');
 		let categorySelected = $tabsList[i].dataset.category;
 
 		for (let removeIndex = 0; removeIndex < $contentList.length; removeIndex++) {
@@ -24,21 +22,30 @@ for (let i = 0; i < $tabsList.length; i++) {
 	});
 }
 
-// ============ Function ===============
+// ============ Functions ===============
+
+function removeSiblingClass(elemList, remClass) {
+	let prewElements = elemList.previousElementSibling;
+	let nextElements = elemList.nextElementSibling;
+
+	while (prewElements) {
+		prewElements.classList.remove(remClass);
+		prewElements = prewElements.previousElementSibling;
+	}
+
+	while (nextElements) {
+		nextElements.classList.remove(remClass);
+		nextElements = nextElements.nextElementSibling;
+	}
+}
 
 function accordionType(type, accordionItems){
 	if (type === 'single') {
 		for (let i = 0; i < accordionItems.length; i++) {
 			
 			accordionItems[i].addEventListener('click', function() {
-		
-				for (let j = 0; j < accordionItems.length; j++) {
-					if (accordionItems[j].classList.contains('open')){
-						accordionItems[j].classList.remove('open');
-					}
-				}
-
-				accordionItems[i].classList.add('open');
+				removeSiblingClass(accordionItems[i], 'open');
+				accordionItems[i].classList.toggle('open');
 			});
 		}
 	}else if (type === 'all'){
@@ -50,14 +57,41 @@ function accordionType(type, accordionItems){
 	}
 }
 
-
 //============ Task 2 ===============
 let $accordionList = document.getElementsByClassName('accordion');
 accordionType('all', $accordionList);
 
-
-
-
 //============ Task 3 ===============
 let $accordionList2 = document.getElementsByClassName('accordion2');
 accordionType('single',  $accordionList2);
+
+//============ Task 4 ===============
+let $slider = document.querySelectorAll('.slider')[0];
+let $slidePrew = document.querySelector('.slider-nav-prew');
+let $slideNext = document.querySelector('.slider-nav-next');
+
+$slidePrew.addEventListener('click', function() {
+	let nowActive = $slider.querySelector('.active');
+
+	if(nowActive === $slider.firstElementChild) {
+		nowActive.classList.remove('active');
+		nowActive = $slider.lastElementChild;
+		nowActive.classList.add('active');
+	}else {
+		nowActive.previousElementSibling.classList.add('active');
+		nowActive.classList.remove('active');
+	}
+});
+
+$slideNext.addEventListener('click', function() {
+	let nowActive = $slider.querySelector('.active');
+	
+	if(nowActive === $slider.lastElementChild) {
+		nowActive.classList.remove('active');
+		nowActive = $slider.firstElementChild;
+		nowActive.classList.add('active');
+	}else {
+		nowActive.nextElementSibling.classList.add('active');
+		nowActive.classList.remove('active');
+	}
+});
