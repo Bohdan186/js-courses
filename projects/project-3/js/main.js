@@ -39,13 +39,9 @@ $('.accordions').each(function() {
 
 //============ Task 4 ===============
 
-$('.slider-wrapper').each(function() {
-	let sliderWrapper = $(this);
-	let sliderNavPrev = sliderWrapper.find('.slider-nav-prev');
-	let sliderNavNext = sliderWrapper.find('.slider-nav-next');
-
-	sliderNavPrev.click(function() {
-		let activeSlide = sliderWrapper.find('.slider .active');
+function sliderNav(element, perentThis){
+	if(element.data('direction') === 'prev'){
+		let activeSlide = perentThis.find('.slider .active');
 		let pervSlide = activeSlide.prev();
 
 		if(pervSlide.length){
@@ -53,12 +49,10 @@ $('.slider-wrapper').each(function() {
 			pervSlide.addClass('active')
 		}else {
 			activeSlide.removeClass('active');
-			sliderWrapper.find('.slider > div').last().addClass('active');
+			perentThis.find('.slider > div').last().addClass('active');
 		}
-	});
-
-	sliderNavNext.click(function() {
-		let activeSlide = sliderWrapper.find('.slider .active');
+	}else if(element.data('direction') === 'next') {
+		let activeSlide = perentThis.find('.slider .active');
 		let nextSlide = activeSlide.next();
 
 		if(nextSlide.length){
@@ -66,7 +60,21 @@ $('.slider-wrapper').each(function() {
 			nextSlide.addClass('active')
 		}else {
 			activeSlide.removeClass('active');
-			sliderWrapper.find('.slider > div').first().addClass('active');
+			perentThis.find('.slider > div').first().addClass('active');
 		}
+	}
+}
+
+$('.slider-wrapper').each(function() {
+	let sliderWrapper = $(this);
+	let sliderNavPrev = sliderWrapper.find('.slider-nav-prev');
+	let sliderNavNext = sliderWrapper.find('.slider-nav-next');
+
+	sliderNavPrev.click(function() {
+		sliderNav($(this), sliderWrapper)
+	});
+
+	sliderNavNext.click(function() {
+		sliderNav($(this), sliderWrapper)
 	});
 });
