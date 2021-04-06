@@ -1,80 +1,82 @@
 //============ Task 1 ===============
 
 $('.products').each(function() {
-	let product = $(this);
-	let $tabsList = product.find('.tabs-menu > li');
+	let $thisProduct = $(this);
+	let $tabsList = $thisProduct.find('.tabs-menu > li');
 
-	$tabsList.click(function() {
-		let tabsCategory = $(this).data('category');
-		let $activeCategory = product.find('.content-list>div[data-category=' + tabsCategory + ']');
+	$tabsList.on('click', function(e) {
+		e.preventDefault();
+		let $thisTab = $(this);
+		let $tabsCategory = $thisTab.data('category');
+		let $activeCategory = $thisProduct.find('.content-list > div [data-category=' + $tabsCategory + ']');
 	
-		$(this).siblings().removeClass('active');
-		$(this).addClass('active');
+		$thisTab.siblings().removeClass('active');
+		$thisTab.addClass('active');
 	
 		$activeCategory.siblings().removeClass('active');
 		$activeCategory.addClass('active');
 	});
 });
 
-
 //============ Task 2 and 3 ===============
 
-
 $('.accordions').each(function() {
-	accordion = $(this);
-	let $accordionList =  accordion.find('.accordion-wrapper > div');
+	let $thisAccordion = $(this);
+	let $accordionList =  $thisAccordion.find('.accordion-wrapper > div');
+	let accordType = $thisAccordion.data('accord-type');
 
-	if(accordion.data('accord-type') === 'simple'){
-		$accordionList.click(function() {
+	if('simple' === accordType){
+		$accordionList.on('click', function() {
 			$(this).toggleClass('open');
 		});
-	}else if(accordion.data('accord-type') === 'single') {
-		$accordionList.click(function() {
-			$(this).siblings().removeClass('open');
-			$(this).toggleClass('open');
+	}else if('single' === accordType) {
+		$accordionList.on('click', function() {
+			let $thisAccordionItem = $(this);
+			$thisAccordionItem.siblings().removeClass('open');
+			$thisAccordionItem.toggleClass('open');
 		});
-	}
+	};
 });
-
 
 //============ Task 4 ===============
 
-function sliderNav(element, perentThis){
-	if(element.data('direction') === 'prev'){
-		let activeSlide = perentThis.find('.slider .active');
-		let pervSlide = activeSlide.prev();
+function sliderNav(element, thisParent){
+	let $activeSlide = thisParent.find('.slider .active');
+	let $sliderItem = thisParent.find('.slider > div');
+	let slideDirection;
 
-		if(pervSlide.length){
-			activeSlide.removeClass('active');
-			pervSlide.addClass('active')
+	$activeSlide.removeClass('active');
+
+	if('prev' === element.data('direction')){
+		slideDirection = $activeSlide.prev();
+
+		if(slideDirection.length){
+			slideDirection.addClass('active');
 		}else {
-			activeSlide.removeClass('active');
-			perentThis.find('.slider > div').last().addClass('active');
+			$sliderItem.last().addClass('active');
 		}
-	}else if(element.data('direction') === 'next') {
-		let activeSlide = perentThis.find('.slider .active');
-		let nextSlide = activeSlide.next();
 
-		if(nextSlide.length){
-			activeSlide.removeClass('active');
-			nextSlide.addClass('active')
+	}else if('next' === element.data('direction')) {
+		slideDirection = $activeSlide.next();
+
+		if(slideDirection.length){
+			slideDirection.addClass('active');
 		}else {
-			activeSlide.removeClass('active');
-			perentThis.find('.slider > div').first().addClass('active');
+			$sliderItem.first().addClass('active');
 		}
 	}
 }
 
 $('.slider-wrapper').each(function() {
-	let sliderWrapper = $(this);
-	let sliderNavPrev = sliderWrapper.find('.slider-nav-prev');
-	let sliderNavNext = sliderWrapper.find('.slider-nav-next');
+	let $sliderWrapper = $(this);
+	let $sliderNavPrev = $sliderWrapper.find('.slider-nav-prev');
+	let $sliderNavNext = $sliderWrapper.find('.slider-nav-next');
 
-	sliderNavPrev.click(function() {
-		sliderNav($(this), sliderWrapper)
+	$sliderNavPrev.on('click', function() {
+		sliderNav($(this), $sliderWrapper);
 	});
 
-	sliderNavNext.click(function() {
-		sliderNav($(this), sliderWrapper)
+	$sliderNavNext.on('click', function() {
+		sliderNav($(this), $sliderWrapper);
 	});
 });
