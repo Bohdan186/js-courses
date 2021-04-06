@@ -1,0 +1,67 @@
+body, h1,h2,h3,h4,h5,h6,p{ 
+	margin: 0;
+	padding: 0;
+}
+
+.blog {
+	display: flex;
+}
+
+.users {
+	width: 25%;
+	background-color: rgb(255, 200, 129);
+}
+
+.user {
+	display: flex;
+	align-items: center;
+	min-height: 80px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-bottom: 2px solid rgb(255, 168, 54);
+	cursor: pointer;
+	transition: all .4s ease;
+}
+
+.user.active,
+.user:hover {
+	color: #fff;
+	background-color: rgb(255, 168, 54);
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+}
+
+.avatar img{
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.posts{
+	width: 75%;
+	padding: 10px;
+	background-color: rgb(255, 242, 219);
+	
+}
+
+.post {
+	padding: 20px 10px;
+}
+
+.post h2{
+	margin-bottom: 15px;
+	text-transform: capitalize;
+}
+
+.post p{
+	margin-bottom: 15px;
+}
