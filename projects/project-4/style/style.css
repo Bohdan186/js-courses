@@ -29,7 +29,6 @@ body, h1,h2,h3,h4,h5,h6,p{
 }
 
 .users {
-	width: 25%;
 	background-color: rgb(255, 200, 129);
 }
 
@@ -37,6 +36,7 @@ body, h1,h2,h3,h4,h5,h6,p{
 	display: flex;
 	align-items: center;
 	min-height: 80px;
+    min-width: 360px;
 	padding-left: 15px;
 	padding-right: 15px;
 	border-bottom: 2px solid rgb(255, 168, 54);
@@ -44,15 +44,18 @@ body, h1,h2,h3,h4,h5,h6,p{
 	transition: all .4s ease;
 }
 
-.user.active,
 .user:hover {
-	color: #fff;
 	background-color: rgb(255, 168, 54);
 }
 
-.user.active a,
-.user:hover a {
-	color: #000;
+.user h4, 
+.user p {
+	transition: all .4s ease;
+}
+
+.user:hover h4, 
+.user:hover p {
+	color: #fff;
 }
 
 .avatar {
@@ -93,15 +96,22 @@ body, h1,h2,h3,h4,h5,h6,p{
 	transition: all .4s ease;
 }
 
-.user .button:hover {
+.button.active,
+.button:hover{
 	color:rgb(255, 168, 54);
 }
 
-.posts{
-	width: 75%;
-	padding: 10px;
-	background-color: rgb(255, 242, 219);
+.container {
 	
+	background-color: rgb(255, 242, 219);
+}
+
+.dynamic-content{
+	padding: 10px;
+}
+
+.width {
+	width: 75%;
 }
 
 .loading-image {
@@ -114,7 +124,7 @@ body, h1,h2,h3,h4,h5,h6,p{
 }
 
 .post {
-	padding: 20px 10px;
+	padding: 10px;
 }
 
 .post h2{
@@ -124,4 +134,53 @@ body, h1,h2,h3,h4,h5,h6,p{
 
 .post p{
 	margin-bottom: 15px;
+}
+
+.view-comments {
+	margin-bottom: 10px;
+}
+
+.view-comments .comment {
+	display: none;
+}
+
+.view-comments.active .comment {
+	display: block;
+}
+
+.comment h6{
+	text-transform: capitalize;
+}
+
+.album {
+	display: flex;
+	align-items: center;
+}
+
+.album .content{
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 14px;
+	background: #fff;
+	min-height: 100px;
+	transition: all .4s ease;
+	cursor: pointer;
+}
+
+.album .content:hover{
+	background-color: #FFC881;
+}
+
+figure {
+	text-align: center;
+}
+
+figure img{
+	margin-bottom: 10px;
+}
+
+figure figcaption{
+	font-weight: 500;
+	color: #464646;
+	font-style: italic;
 }
