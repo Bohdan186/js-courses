@@ -7,17 +7,56 @@
 			$(this).addClass('active');
 			unit = $(this).data('unit');
 		});
-		console.log(unit);
 		return unit;
 	}
 
+	function getCityList(data) {
+		$('.search-city-list').remove();
+		$('.widget-header').append(`<div class="search-city-list"></div>`);
+
+		data.list.forEach(el => {
+			$('.search-city-list').append(`
+				<div class="search-city-item" data-city-id=${el.id}>City: ${el.name}; Country: ${el.sys.country}: Temp: ${el.main.temp} </div>
+			`);
+		});
+
+		$('.search-city-item').on('click', function(){
+			console.log($(this).data('city-id'));
+		});
+	}
+
 	function renderWeatherData(data){
-		$('.city-name').text(' ').append(data.name);
-		$('.temp').text(' ').append(data.main.temp);
-		$('.description').text(' ').append(data.weather[0].description);
+		$('.city-name').text(data.name);
+		$('.temp').text(data.main.temp);
+		$('.description').text(data.weather[0].description);
 		if('clear sky' === data.weather[0].description){
 			$('.img-wrapper').append('<img src="img/clearSky.jpg"></img>');
 		}
+
+		$('.wind-speed').text(' ').append(`
+			<div class="data-title">wind-speed</div>
+			<div class="data-content">${data.wind.speed}</div>
+		`);
+		$('.wind-deg').text(' ').append(`
+			<div class="data-title">wind-deg</div>
+			<div class="data-content">
+				<i class="far fa-angle-up"></i> ${data.wind.deg}
+			</div>
+		`);
+		$('.wind-deg i').css('transform', `rotate(${data.wind.deg}deg)`);
+
+		$('.pressure').text(' ').append(`
+			<div class="data-title">pressure</div>
+			<div class="data-content">${data.main.pressure}</div>
+		`);
+		$('.humidity').text(' ').append(`
+			<div class="data-title">humidity</div>
+			<div class="data-content">${data.main.humidity}</div>
+		`);
+		$('.clouds-all').text(' ').append(`
+			<div class="data-title">clouds-al</div>
+			<div class="data-content">${data.clouds.all}</div>
+		`);
 	}
 
 	function getWeatherData_geo(position){
@@ -36,20 +75,17 @@
 
 	function getWeatherData_cityName(){
 		let cityName = $('.search-city').val();
-
-
 		let unit = $('.change-unit .active').data('unit');
+		$('.search-city-list').remove();
 
-		console.log(unit);
-		
-		if(!cityName){
-			alert('Введіть назву міста!');
-		}else {
+		if(cityName.length >= 3){
 			$.ajax({
-				url: `https://api.openweathermap.org/data/2.5/weather?q=${cityName},ua&units=${unit}&appid=e3b0b4e9f227920605001124729511a0`,
+				url: `https://api.openweathermap.org/data/2.5/find?q=${cityName}&units=${unit}&appid=e3b0b4e9f227920605001124729511a0`,
 		
 				success: function(data){
-					renderWeatherData(data);
+					if(0 !== data.count){
+						getCityList(data);
+					}
 				}
 			});
 		}
@@ -63,7 +99,6 @@
 			$(this).addClass('active');
 		});
 		
-		$('.widget-search-button').on('click', getWeatherData_cityName);
-		
+		$('.search-city').on('keyup', getWeatherData_cityName);
 	});
 })(jQuery);

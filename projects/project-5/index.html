@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<link rel="stylesheet" href="style/style.css">
 	<title>Project 5</title>
@@ -17,34 +18,47 @@
 			<div class="row align-items-center widget-inner">
 				<div class="col-lg-6 offset-lg-3">
 					<div class="weather-widget">
-						<form action="#" name="search-city"  class="weather-search-city">
-							<input type="text" placeholder="Search city (Kiev, Uman)" class="search-city">
-							<button type="submit" class="widget-search-button">search</button>
-						</form>
-						<div class="weather-content">
-							<div class="top-line">
-								<div class="title">
-									<small>city</small>
-									<h2 class="city-name">Uman</h2>
-								</div>
-								<div class="change-unit">
-									<div class="btn active" data-unit="metric">
-										°C, m/s
-									</div>
-									<div class="btn" data-unit="imperial">
-										°F, mph
-									</div>
-								</div>
+						<div class="widget-header">
+							<form action="#" name="search-city"  class="weather-search-city">
+								<input type="text" placeholder="Search city (Kiev, Uman)" class="search-city">
+								<button type="submit" class="widget-search-button">search</button>
+							</form>
+						</div>
+						<div class="content-wrapper">
+							<div class="weather-content content-left">
+								<ul class="additional-data">
+									<li class="wind-speed"></li>
+									<li class="wind-deg"></li>
+									<li class="pressure"></li>
+									<li class="humidity"></li>
+									<li class="clouds-all"></li>
+								</ul>
 							</div>
-							<div class="main-content">
-								<div class="img-wrapper">
-									<img src="img/clearSky.jpg" alt="">
-								</div>
-								<div class="main">
-									<div class="temp">4
-										<span class="temp-scale">°C</span>
+							<div class="weather-content">
+								<div class="top-line">
+									<div class="title">
+										<small>city</small>
+										<h2 class="city-name">Uman</h2>
 									</div>
-									<div class="description">clear sky</div>
+									<div class="change-unit">
+										<div class="btn active" data-unit="metric">
+											°C, m/s
+										</div>
+										<div class="btn" data-unit="imperial">
+											°F, mph
+										</div>
+									</div>
+								</div>
+								<div class="main-content">
+									<div class="img-wrapper">
+										<img src="img/clearSky.jpg" alt="">
+									</div>
+									<div class="main">
+										<div class="temp">4
+											<span class="temp-scale">°C</span>
+										</div>
+										<div class="description">clear sky</div>
+									</div>
 								</div>
 							</div>
 						</div>
