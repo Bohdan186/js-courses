@@ -20,25 +20,40 @@
 					<div class="weather-widget">
 						<div class="widget-header">
 							<form action="#" name="search-city"  class="weather-search-city">
-								<input type="text" placeholder="Search city (Kiev, Uman)" class="search-city">
+								<input type="text" placeholder="Search city (Kyiv, Uman)" class="search-city" data-presentCityId="">
 								<button type="submit" class="widget-search-button">search</button>
 							</form>
 						</div>
 						<div class="content-wrapper">
 							<div class="weather-content content-left">
 								<ul class="additional-data">
-									<li class="wind-speed"></li>
-									<li class="wind-deg"></li>
-									<li class="pressure"></li>
-									<li class="humidity"></li>
-									<li class="clouds-all"></li>
+									<li class="wind-speed">
+										<div class="data-title">wind-speed</div>
+										<div class="data-content"></div>
+									</li>
+									<li class="wind-deg">
+										<div class="data-title">wind-deg</div>
+										<div class="data-content"></div>
+									</li>
+									<li class="pressure">
+										<div class="data-title">pressure</div>
+										<div class="data-content"></div>
+									</li>
+									<li class="humidity">
+										<div class="data-title">humidity</div>
+										<div class="data-content"></div>
+									</li>
+									<li class="clouds-all">
+										<div class="data-title">clouds-all</div>
+										<div class="data-content"></div>
+									</li>
 								</ul>
 							</div>
 							<div class="weather-content">
 								<div class="top-line">
 									<div class="title">
 										<small>city</small>
-										<h2 class="city-name">Uman</h2>
+										<h2 class="city-name" data-dataKey></h2>
 									</div>
 									<div class="change-unit">
 										<div class="btn active" data-unit="metric">
@@ -54,10 +69,11 @@
 										<img src="img/clearSky.jpg" alt="">
 									</div>
 									<div class="main">
-										<div class="temp">4
+										<div class="temp">
+											<h1 class="temp-value"></h1>
 											<span class="temp-scale">°C</span>
 										</div>
-										<div class="description">clear sky</div>
+										<div class="description"></div>
 									</div>
 								</div>
 							</div>

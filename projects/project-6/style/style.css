@@ -1,0 +1,106 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-family: sans-serif;
+    line-height: 1.2;
+	background-color: rgb(255, 253, 244);
+}
+
+ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+button,
+input{
+	padding: 0;
+	margin: 0;
+	outline: none;
+	border: none;
+	font-size: 16px;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=url],
+input[type=date],
+input[type=time],
+select,
+textarea {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid rgba(16, 16, 16, 0.1);
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+input[type=url],
+input[type=date],
+input[type=time],
+select {
+  height: 42px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+label {
+  display: inline-block;
+  font-weight: 600;
+}
+label span {
+  color: #E44242;
+}
+
+textarea {
+  padding: 20px;
+}
+
+input[type=button],
+input[type=submit],
+button,
+.button {
+  display: inline-block;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: #36B1F5;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 0.4s ease;
+}
+
+input[type=button]:hover,
+input[type=submit]:hover,
+button:hover,
+.button:hover {
+  background-color: #097cbc;
+}
+
+
+.inner {
+	min-height: 100vh;
+}

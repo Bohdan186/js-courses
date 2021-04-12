@@ -1,104 +1,151 @@
 (function($) {
+	//GENERALS SETTINGS
+	let apiKey = 'e3b0b4e9f227920605001124729511a0';
 
-	function changeUnit(){
-		let unit;
-		$('.change-unit .btn').on('click', function() {
-			$(this).siblings().removeClass('active');
-			$(this).addClass('active');
-			unit = $(this).data('unit');
-		});
-		return unit;
+	//HELPERS
+	function clearCityList() {
+		$('.search-city-list').remove();
 	}
 
-	function getCityList(data) {
-		$('.search-city-list').remove();
+	function serverError(){
+		$('body').children().remove();
+
+		$('body').append(
+			`<div class="error">
+				<h1>Server Error</h1>
+			</div>`
+		);
+	}
+
+	// UI
+	function generateCityList(data){
 		$('.widget-header').append(`<div class="search-city-list"></div>`);
 
-		data.list.forEach(el => {
-			$('.search-city-list').append(`
-				<div class="search-city-item" data-city-id=${el.id}>City: ${el.name}; Country: ${el.sys.country}: Temp: ${el.main.temp} </div>
-			`);
-		});
-
-		$('.search-city-item').on('click', function(){
-			console.log($(this).data('city-id'));
-		});
-	}
-
-	function renderWeatherData(data){
-		$('.city-name').text(data.name);
-		$('.temp').text(data.main.temp);
-		$('.description').text(data.weather[0].description);
-		if('clear sky' === data.weather[0].description){
-			$('.img-wrapper').append('<img src="img/clearSky.jpg"></img>');
-		}
-
-		$('.wind-speed').text(' ').append(`
-			<div class="data-title">wind-speed</div>
-			<div class="data-content">${data.wind.speed}</div>
-		`);
-		$('.wind-deg').text(' ').append(`
-			<div class="data-title">wind-deg</div>
-			<div class="data-content">
-				<i class="far fa-angle-up"></i> ${data.wind.deg}
-			</div>
-		`);
-		$('.wind-deg i').css('transform', `rotate(${data.wind.deg}deg)`);
-
-		$('.pressure').text(' ').append(`
-			<div class="data-title">pressure</div>
-			<div class="data-content">${data.main.pressure}</div>
-		`);
-		$('.humidity').text(' ').append(`
-			<div class="data-title">humidity</div>
-			<div class="data-content">${data.main.humidity}</div>
-		`);
-		$('.clouds-all').text(' ').append(`
-			<div class="data-title">clouds-al</div>
-			<div class="data-content">${data.clouds.all}</div>
+		$('.search-city-list').append(`
+			<div class="search-city-item" data-city-id=${data.id}>City: ${data.name}; Country: ${data.sys.country}: Temp: ${data.main.temp} </div>
 		`);
 	}
 
-	function getWeatherData_geo(position){
+	function renderWeatherData(dataKey) {
+			let data = JSON.parse(sessionStorage.getItem(dataKey));
+
+			$('.city-name').text(data.name);
+			$('.temp-value').text(data.main.temp);
+			$('.description').text(data.weather[0].description);
+			if(800 === data.weather[0].id){
+				$('.img-wrapper').html('<img src="img/clearSky.jpg"></img>');
+			}else if(804 === data.weather[0].id){
+				$('.img-wrapper').html('<img src="img/overcastClouds.jpg"></img>');
+			}
+	
+			$('.wind-speed .data-content').text(data.wind.speed);
+			$('.wind-deg .data-content').html(`<i class="far fa-angle-up"></i> ${data.wind.deg}`);
+			$('.wind-deg i').css('transform', `rotate(${data.wind.deg}deg)`);
+			$('.pressure .data-content').text(data.main.pressure);
+			$('.humidity .data-content').text(data.main.humidity);
+			$('.clouds-all .data-content').text(data.clouds.all);
+		// }else {
+		// 	$('.weather-content').children().remove();
+		// 	$('.weather-content').append(
+		// 		`<div class="data-error">
+		// 			<h1>Data not found</h1>
+		// 		</div>`
+		// 	);
+		// }
+	}
+
+	function cachingWeatherData(data) {
+		let serialObj = JSON.stringify(data);
+		sessionStorage.setItem(`cityId_${data.id}`, serialObj);
+	}
+
+	//DAL
+
+	function callWeatherById(cityId){
+		let dataKey = `cityId_${cityId}`;
+		$('.city-name').attr('data-dataKey', cityId);
+
+		if(sessionStorage.getItem(dataKey)){
+			renderWeatherData(dataKey);
+		}else{
+			$.ajax({
+				url: `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&units=metric&appid=${apiKey}`,
+
+				success: function(data){
+					cachingWeatherData(data);
+					renderWeatherData(dataKey);
+					$('.city-name').attr('data-dataKey', dataKey);
+				},
+				error: serverError,
+			});
+		};
+	}
+
+	function getWeatherByCityName(cityName){
+		$.ajax({
+			url: `https://api.openweathermap.org/data/2.5/find?q=${cityName}&units=metric&appid=${apiKey}`,
+
+			success: function(data){
+				clearCityList();
+				data.list.forEach(el => {
+					cachingWeatherData(el);
+					generateCityList(el);
+				});
+			},
+			error: serverError,
+		});
+	}
+	
+	function getWeatherDataByGeo(position) {
 		let lat = position.coords.latitude;
 		let lon = position.coords.longitude;
-		let unit = $('.change-unit .btn').data('unit');
 
 		$.ajax({
-			url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=e3b0b4e9f227920605001124729511a0`,
+			url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`,
 	
 			success: function(data){
-				renderWeatherData(data);
+				cachingWeatherData(data);
+				renderWeatherData(`cityId_${data.id}`);
+			},
+			error: serverError,
+		});
+	}
+
+	//DOCUMENT
+	$(document).ready(function() {
+		navigator.geolocation.getCurrentPosition(getWeatherDataByGeo, callWeatherById('690688'));
+
+		$('.search-city').on('keyup', function(){
+			let searchCityVal = $(this).val();
+			clearCityList();
+
+			if(searchCityVal.length >= 3){
+				getWeatherByCityName(searchCityVal);
 			}
 		});
-	}
 
-	function getWeatherData_cityName(){
-		let cityName = $('.search-city').val();
-		let unit = $('.change-unit .active').data('unit');
-		$('.search-city-list').remove();
+		// $(document).on('click','.search-city-item', function(){
+		// 	clearCityList();
+		// 	callWeatherById($(this).data('city-id'));
+		// });
 
-		if(cityName.length >= 3){
-			$.ajax({
-				url: `https://api.openweathermap.org/data/2.5/find?q=${cityName}&units=${unit}&appid=e3b0b4e9f227920605001124729511a0`,
-		
-				success: function(data){
-					if(0 !== data.count){
-						getCityList(data);
-					}
-				}
-			});
-		}
-	}
+		// $(document).on('click','.change-unit .btn', function(){
+		// 	let dataKey = `cityId_${$('.city-name').data('datakey')}`;
+	
+		// 	if(sessionStorage.getItem(dataKey)){
+		// 		renderWeatherData(dataKey);
+		// 	}else{
+		// 		$.ajax({
+		// 			url: `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&units=${$(this).data('unit')}&appid=${apiKey}`,
+	
+		// 			success: function(data){
+		// 				cachingWeatherData(data);
+		// 				renderWeatherData(dataKey);
+		// 			},
+		// 			error: serverError,
+		// 		});
+		// 	};
+		// });
 
-	$(document).ready(function() {
-		// navigator.geolocation.getCurrentPosition(getWeatherData_geo);
-
-		$('.change-unit .btn').on('click', function(){
-			$(this).siblings().removeClass('active');
-			$(this).addClass('active');
-		});
-		
-		$('.search-city').on('keyup', getWeatherData_cityName);
 	});
 })(jQuery);

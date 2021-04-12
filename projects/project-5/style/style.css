@@ -166,8 +166,12 @@ input[type=text]::placeholder{
 .temp {
     position: relative;
 	display: inline-flex;
+}
+
+.temp-value {
 	font-size: 90px;
 }
+
 .temp-scale {
     position: absolute;
     top: 10px;
@@ -230,11 +234,32 @@ i {
     display: flex;
     padding: 10px;
     border-radius: 10px;
-    border-bottom: 1px solid;
     transition: all .4s ease;
     cursor: pointer;
 }
 
 .search-city-item:hover {
 	background-color: rgb(255, 255, 255, .3);
+}
+
+
+.error {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.error h1{
+	font-size: 72px;
+	color: red;
+	letter-spacing: 5px;
+	margin-bottom: 15px;
+
 }
