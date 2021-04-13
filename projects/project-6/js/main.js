@@ -12,26 +12,38 @@
 		);
 	}
 
-	function currenciesLiveData(data){
+	function cachingLiveData(data) {
+		let serialObj = JSON.stringify(data);
+		sessionStorage.setItem('live', serialObj);
+	}
+
+	function currenciesLiveData(dataKey){
+		let data = JSON.parse(sessionStorage.getItem(dataKey));
 		let date = new Date(data.timestamp * 1000).toLocaleString();
+
 		$('.date').text(date);
 
-		$('.currency').on('change', function(){
-			$(this).selected = true;
-		});
-
-		$('.money').on('change', function(){
+		$('.money').on('keyup', function(){
 			$('.money').removeClass('active');
 			$(this).addClass('active');
-			$('.money').not('.active').val($(this).val() * data.quotes[`${$('.currency1').attr('selected').val()}`] / data.quotes[`${$('.currency2').attr('selected').val()}`])
+
+			let activeMoneyData = $('.money.active').attr('data-money');
+			let inputNumber = parseFloat($('.money.active').val());
+			let yourCurrencies = data.quotes[$('.currency2').val()];
+			let searchCurrencies = data.quotes[$('.currency1').val()];
+
+			if(activeMoneyData === '1'){
+				$('.money').not('.active').val(inputNumber *  yourCurrencies / searchCurrencies);
+			}else if(activeMoneyData === '2'){
+				$('.money').not('.active').val(inputNumber * searchCurrencies / yourCurrencies);
+			}
 		});
 	}
 
 	function appendCurrenciesNames(data){
-		console.log(data.currencies);
 		for(let key in data.currencies){
 			$('.currency').append(`
-				<option value="${key}">${key}</option>
+				<option value="USD${key}">${data.currencies[key]}</option>
 			`);
 		}
 	}
@@ -46,17 +58,24 @@
 		});
 	}
 
-	function getCurrenciesLive(){
-		$.ajax({
-			url: `http://api.currencylayer.com/live?access_key=${apiKey}`,
-
-			success: currenciesLiveData,
-			error: serverError,
-		});
+	function callLiveData(){
+		if(sessionStorage.getItem('live')){
+			currenciesLiveData('live');
+		}else{
+			$.ajax({
+				url: `http://api.currencylayer.com/live?access_key=${apiKey}`,
+	
+				success: function(data){
+					cachingLiveData(data);
+					currenciesLiveData('live');
+				},
+				error: serverError,
+			});
+		};
 	}
 
 	$(document).ready(function(){
 		getCurrenciesList();
-		getCurrenciesLive();
+		callLiveData();
 	});
 })(jQuery);
