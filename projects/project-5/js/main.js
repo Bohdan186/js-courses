@@ -124,12 +124,12 @@
 
 		$(document).on('click','.change-unit .btn', function(){
 			let activeBtn = $(this);
+			let thisClass = $('.change-unit .btn')
 			let unit = activeBtn.data('unit');
-			let cityId = $('.city-name').data('datakey');	//Неправильний індекс
+			let cityId = $('.city-name').attr('data-datakey');
 			let datakey = `cityId_${cityId}_unit_${unit}`;
 
-			
-			$('.change-unit .btn').removeClass('active');
+			thisClass.removeClass('active');
 			$(this).addClass('active');
 
 			if(sessionStorage.getItem(datakey)){

@@ -17,26 +17,34 @@
 		sessionStorage.setItem('live', serialObj);
 	}
 
+	function convert(data, thisInput, yourCurrenciesKey, searchCurrenciesKey){
+		$('.money').removeClass('active');
+		thisInput.addClass('active');
+
+		let activeMoneyData = thisInput.attr('data-money');
+		let inputNumber = parseFloat(thisInput.val());
+		let yourCurrencies = data.quotes[yourCurrenciesKey];
+		let searchCurrencies = data.quotes[searchCurrenciesKey];
+
+		if(activeMoneyData === '1'){
+			$('.money').not('.active').val(inputNumber *  yourCurrencies / searchCurrencies);
+		}else if(activeMoneyData === '2'){
+			$('.money').not('.active').val(inputNumber * searchCurrencies / yourCurrencies);
+		}
+	}
+
 	function currenciesLiveData(dataKey){
 		let data = JSON.parse(sessionStorage.getItem(dataKey));
 		let date = new Date(data.timestamp * 1000).toLocaleString();
 
 		$('.date').text(date);
-
+		$('.now-eur').text((data.quotes['USDUAH'] / data.quotes['USDEUR']).toFixed(3));
+		$('.now-usd').text((data.quotes['USDUAH']).toFixed(3));
 		$('.money').on('keyup', function(){
-			$('.money').removeClass('active');
-			$(this).addClass('active');
-
-			let activeMoneyData = $('.money.active').attr('data-money');
-			let inputNumber = parseFloat($('.money.active').val());
-			let yourCurrencies = data.quotes[$('.currency2').val()];
-			let searchCurrencies = data.quotes[$('.currency1').val()];
-
-			if(activeMoneyData === '1'){
-				$('.money').not('.active').val(inputNumber *  yourCurrencies / searchCurrencies);
-			}else if(activeMoneyData === '2'){
-				$('.money').not('.active').val(inputNumber * searchCurrencies / yourCurrencies);
-			}
+			convert(data, $(this), $('.currency2').val(), $('.currency1').val());
+		});
+		$('.currency').on('change', function(){
+			convert(data, $('.money.active'), $('.currency2').val(), $('.currency1').val());
 		});
 	}
 
@@ -53,7 +61,10 @@
 		$.ajax({
 			url: `http://api.currencylayer.com/list?access_key=${apiKey}`,
 
-			success: appendCurrenciesNames,
+			success: function(data){
+				data.currencies['iPhone'] = 'iPhone Apple';
+				appendCurrenciesNames(data);
+			},
 			error: serverError,
 		});
 	}
@@ -66,6 +77,7 @@
 				url: `http://api.currencylayer.com/live?access_key=${apiKey}`,
 	
 				success: function(data){
+					data.quotes['USDiPhone'] = 1 / 1070.48;
 					cachingLiveData(data);
 					currenciesLiveData('live');
 				},

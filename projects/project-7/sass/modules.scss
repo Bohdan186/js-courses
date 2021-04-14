@@ -1,0 +1,555 @@
+// ------------------------------------------------------------------------------------------------
+// MODULES
+// ------------------------------------------------------------------------------------------------
+
+
+// ------------------------------------------
+// TITLE
+// ------------------------------------------
+
+.title {
+	max-width: 380px;
+	margin-bottom: 40px;
+
+	.subtitle {
+		font-family: 'Hind', sans-serif;
+		font-size: 13px;
+		font-weight: 500;
+		color: $primary-color;
+
+		&.subtitle-big {
+			font-size: 16px;
+			font-weight: 400;
+		}
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	
+	&.title-center {
+
+		text-align: center;
+		max-width: 100%;
+
+		.subtitle {
+			margin-bottom: 15px;
+
+		}
+
+		h2 {
+			margin-bottom: 20px;
+		}
+
+		p {
+			max-width: 380px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+// ------------------------------------------
+// BUTTONS
+// ------------------------------------------
+
+.button {
+	
+	//**** BUTTON SIZE ****//
+
+	&.btn-large {
+		padding: 15px 70px;
+	}
+	&.btn-medium {
+		padding: 15px 30px;
+	}
+	&.btn-small {
+		padding: 15px 25px;
+	}
+	&.btn-x-small {
+		padding: 15px 20px;
+	}
+	&.btn-xx-small {
+		padding: 10px 15px;
+		height: 40px;
+	}
+
+	//**** BUTTON BG COLOR ****//
+
+	&.btn-primary-color {
+		background-color: $primary-color;
+		color: #fff;
+
+		&:hover {
+			background-color: darken($color: $primary-color, $amount: 20%);
+		}
+	}
+	&.btn-dark-color {
+		background-color: #333333;
+		color: #fff;
+
+		&:hover {
+			background-color: darken($color: #333333, $amount: 20%);
+		}
+	}
+	&.btn-none-color {
+		background-color: transparent;
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	//**** BUTTON TEXT COLOR ****//
+
+	&.btn-text-white {
+		color: #fff;
+	}
+
+	//**** TYPE BUTTON ****//
+
+	&.btn-bordered {
+		border: 1px solid rgba(16, 16, 16, 0.05);
+	}
+
+}
+
+.swatch {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	background-color: #fff;
+    color: rgba(16, 16, 16, 0.8);
+	
+
+	&:hover {
+		background-color: darken($color: #fff, $amount: 20%);
+	}
+
+	i {
+		font-size: 20px;
+	}
+
+	//**** SQUARE BG COLOR ****//
+
+	&.swatch-bgc-1 {
+		background-color: #A3B2A4;
+
+		&:hover {
+			background-color: darken($color: #A3B2A4, $amount: 20%);
+		}
+	}
+	&.swatch-bgc-2 {
+		background-color: #D6575E;
+
+		&:hover {
+			background-color: darken($color: #D6575E, $amount: 20%);
+		}
+	}
+	&.swatch-bgc-3 {
+		background-color: #2A767A;
+
+		&:hover {
+			background-color: darken($color: #2A767A, $amount: 20%);
+		}
+	}
+	&.swatch-bgc-4 {
+		background-color: #FFC7C7;
+
+		&:hover {
+			background-color: darken($color: #FFC7C7, $amount: 20%);
+		}
+	}
+	&.swatch-bgc-5 {
+		background-color: #164F58;
+
+		&:hover {
+			background-color: darken($color: #164F58, $amount: 20%);
+		}
+	}
+	&.swatch-bgc-6 {
+		background-color: #ECC3DB;
+
+		&:hover {
+			background-color: darken($color: #ECC3DB, $amount: 20%);
+		}
+	}
+	
+	&.swatch-bgc-7 {
+		background-color: #EEEEEE;
+
+		&:hover {
+			background-color: darken($color: #EEEEEE, $amount: 20%);
+		}
+	}
+
+	&.swatch-bgc-8 {
+		background-color: #1A1A1C;
+
+		&:hover {
+			background-color: darken($color: #1A1A1C, $amount: 20%);
+		}
+	}
+
+	&.swatch-bgc-9 {
+		background-color: #E9D0DE;
+
+		&:hover {
+			background-color: darken($color: #E9D0DE, $amount: 20%);
+		}
+	}
+
+	&.swatch-bgc-10 {
+		background-color: #31397D;
+
+		&:hover {
+			background-color: darken($color: #31397D, $amount: 20%);
+		}
+	}
+
+	&.swatch-bgc-11 {
+		background-color: #CEDADE;
+
+		&:hover {
+			background-color: darken($color: #CEDADE, $amount: 20%);
+		}
+	}
+
+	&.swatch-bgc-12 {
+		background-color: #202020;
+
+		&:hover {
+			background-color: darken($color: #202020, $amount: 20%);
+		}
+	}
+	
+	&.swatch-bgc-13 {
+		background-color: #C5D1E3;
+
+		&:hover {
+			background-color: darken($color: #C5D1E3, $amount: 20%);
+		}
+	}
+	
+	&.swatch-bgc-14 {
+		background-color: #F2F2F2;
+
+		&:hover {
+			background-color: darken($color: #F2F2F2, $amount: 20%);
+		}
+	}
+
+	//**** SQUARE SIZE ****//
+
+	&.swatch-small {
+		width: 15px;
+		height: 15px;
+	}
+	&.swatch-large {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+// ------------------------------------------
+// PRODUCTS
+// ------------------------------------------
+
+.product {
+
+	&:hover {
+
+		.inner {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	.btn-wrapper, 
+	.btn-inner {
+		display: flex;
+		align-items: center;
+	}
+
+	.img-wrapper{
+		margin-bottom: 20px;
+		position: relative;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.btn-xx-small {
+		.hidden-i {
+			margin-left: 5px;
+			transition: $transition;
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		&:hover {
+			.hidden-i {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+
+	
+	.inner {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 0;
+		visibility: hidden;
+		transition: $transition;
+
+		.content {
+			padding: 15px;
+			display: flex;
+			align-items: flex-end;
+		}
+
+		.btn-wrapper {
+			justify-content: center;
+			flex-grow: 1;
+			
+			a {
+				z-index: 1;
+
+				&:not(:last-child) {
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+
+	.content {
+		
+		.first-line	{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 10px;
+
+			a {
+				margin-right: 5px;
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+
+		.button {
+			
+			&:not(:last-child) {
+				margin-right: 5px;
+			}
+		}
+
+		h6 {
+			margin-bottom: 0;
+		}
+
+		.price {
+			font-family: "Spartan", sans-serif;
+			font-size: 15px;
+			font-weight: 500;
+			color: $primary-color;
+		}
+	}
+
+	> .content {
+		a {
+			color: #101010;
+
+			&:hover {
+				color: $primary-color;
+			}
+		}
+	}
+}
+
+// ------------------------------------------
+// BANNERS
+// ------------------------------------------
+
+.banner {
+	position: relative;
+
+	.img-wrapper {
+		overflow: hidden;
+
+		img {
+			width: 100%;
+		}
+		
+		.img-inner {
+			transition: $transition;
+		}
+	}
+
+	&:hover {
+			
+		.img-inner {
+			transform: scale(1.1);
+		}
+	}
+	
+	.content-wrapper {
+		@include absolute;
+		// padding: 40px;
+		display: flex;
+		align-items: center;
+	}
+
+	.content {
+		max-width: 280px;
+		padding: 40px;
+
+		a {
+			z-index: 1;
+			position: relative;
+		}
+	}
+
+	&.banner-large {
+		
+		.content {
+			max-width: 440px;
+		}
+
+		.btn-wrapper {
+			display: flex;
+			align-items: center;
+
+			a {
+
+				&:not(:last-child) {
+					
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+
+	&.banner-to-action {
+		
+		.content {
+			top: auto;
+			transform: none;
+			padding: 30px;
+			background-color: $second-color;
+		}
+
+		.title {
+			margin-bottom: 0;
+
+			.subtitle {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}
+
+// ------------------------------------------
+// FORM
+// ------------------------------------------
+
+.search-wrapper {
+	flex-basis: 580px;
+}
+
+.search {
+	position: relative;
+	flex-grow: 1;
+
+	button {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		display: block;
+		width: 40px;
+		padding: 0;
+		background-color: transparent;
+
+		i {
+			color: rgba(16, 16, 16, 0.5);
+			font-size: 16px;
+		}
+	}
+
+	input[type=text] {
+		padding-left: 40px;
+		padding-right: 163px;
+		color:rgba(16, 16, 16, 0.5);
+		font-weight: 500;
+
+		&::placeholder {
+			color:rgba(16, 16, 16, 0.5);
+
+		}
+	}
+
+	.select-category {
+		position: absolute;
+		right: 0;
+		top: 0px;
+		bottom: 0px;
+		display: flex;
+		align-items: center;
+		padding: 0;
+		width: 144px;
+		color: rgba(16, 16, 16, 0.8);
+		text-transform: capitalize;
+		font-weight: 500;
+		border-right: none;
+		cursor: pointer;
+
+		&::before {
+			content: "";
+			width: 1px;
+			height: 10px;
+			background-color: rgba(16, 16, 16, 0.05);
+			margin-right: 20px;
+		}
+
+		i {
+			width: 20px;
+			text-align: center;
+		}
+	}
+}
+
+// ------------------------------------------
+// TESTIMONIALS
+// ------------------------------------------
+
+.testimonials {
+	padding: 40px 30px; 
+	background-color: #fff;
+}
+.user {
+	display: flex;
+
+	.title {
+		margin-bottom: 0;
+	}
+}
+// .img-wrapper {
+// }
+// .content-wrapper {
+// }
+// .title {
+// }
+// .subtitle {
+// }
