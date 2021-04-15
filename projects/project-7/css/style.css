@@ -5159,6 +5159,7 @@ button:hover,
   transform: none;
   padding: 30px;
   background-color: #FBF3F0;
+  z-index: 1;
 }
 .banner.banner-to-action .title {
   margin-bottom: 0;
@@ -5568,6 +5569,7 @@ button:hover,
 .slider-nav span.arrow {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.3);
+  z-index: 1;
 }
 .slider-nav span.arrow.active, .slider-nav span.arrow:hover {
   color: rgba(255, 255, 255, 0.7);
@@ -5655,6 +5657,7 @@ button:hover,
   width: 25px;
   transition: all 0.4s ease;
   cursor: pointer;
+  z-index: 1;
 }
 .banner-slider-nav span.active, .banner-slider-nav span:hover {
   color: #333333;
@@ -5687,6 +5690,7 @@ button:hover,
 
 .swiper-pagination {
   display: flex;
+  position: static;
 }
 
 @media (min-width: 1200px) {
