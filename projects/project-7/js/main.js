@@ -1,4 +1,5 @@
 (function($) {
+
 	$('.products').each(function() {
 		let $thisProduct = $(this);
 		let $tabsList = $thisProduct.find('.tabs-menu > li');
@@ -17,69 +18,128 @@
 		});
 	});
 
-	function getSwiperSettings(object){
-		let userSwiperSetting = object.data('options');
-		let config = {};
-
-		if(userSwiperSetting.direction){
-			config['direction'] = userSwiperSetting.direction;
+	function initSwiper(object){
+		if(undefined === typeof Swiper){
+			return false;
 		}
+		
+		function getSwiperSettings(object){
+			let userSwiperSetting = object.data('options');
+			let config = {
+				loop: userSwiperSetting.loop,
+				breakpoints: {
+					576: {
+						slidesPerView: userSwiperSetting.mobile
+					},
 
-		if(userSwiperSetting.loop){
-			config['loop'] = userSwiperSetting.loop;
-		}
+					768: {
+						slidesPerView: userSwiperSetting.tablet
+					},
 
-		if(userSwiperSetting.pagination){
-			config['pagination'] = {
-				el: '.swiper-pagination',
-				clickable:true,
-				bulletActiveClass:'active',
-				bulletClass:'slider-pagination-items',
-				renderBullet:function (index, className) {
-					return '<span class="' + className + '">' + (index + 1) + '</span>';
-				}
+					992: {
+						slidesPerView: userSwiperSetting.desktop
+					}
+				},
 			};
-		}
 
-		if(userSwiperSetting.navigation){
-			config['navigation'] = {
-				prevEl:'.prev',
-				nextEl:'.next'
+			if(userSwiperSetting.pagination){
+				config['pagination'] = {
+					el: '.swiper-pagination',
+					clickable:true,
+					bulletActiveClass:'active',
+					bulletClass:'slider-pagination-items',
+					renderBullet:function (index, className) {
+						return '<span class="' + className + '">' + (index + 1) + '</span>';
+					}
+				};
 			}
+			if(userSwiperSetting.navigation){
+				config['navigation'] = {
+					prevEl:'.prev',
+					nextEl:'.next'
+				}
+			}
+			if(userSwiperSetting.spaceBetween){
+				config['spaceBetween'] = userSwiperSetting.spaceBetween;
+			}
+
+			return config;
 		}
 
-		if(userSwiperSetting.slidesPerView){
-			let slideViewNumb = userSwiperSetting.slidesPerView;
-			config['slidesPerView'] = 1;
-			
-			config['breakpoints'] = {
-				768: {
-					slidesPerView: Math.floor(slideViewNumb/2)
+		object.each(function(){
+			$thisSwiper = $(this);
+			new Swiper($thisSwiper[0], getSwiperSettings($thisSwiper));
+		});
+	}
+
+	function initPopup(object){
+		if(undefined === typeof $.fn.magnificPopup){
+			return false;
+		}
+
+		object.magnificPopup({
+			type:'inline',
+		});
+	}
+
+	function initWaypoint(object){
+		if(undefined === typeof Waypoint){
+			return false;
+		}
+
+		object.each(function(){
+			let $this = $(this);
+
+			new Waypoint({
+				element: $(this)[0],
+				handler: function() {
+					$this.addClass('animate');
 				},
 
-				992: {
-				slidesPerView: slideViewNumb
-				}
-			};
+				offset: '70%'
+			})
+		});
+	}
+
+	function initAutocomplete(object){
+		if(undefined === typeof $.fn.autocomplete){
+			return false;
 		}
 
-		if(userSwiperSetting.spaceBetween){
-			config['spaceBetween'] = userSwiperSetting.spaceBetween;
-		}
+		var countries = [
+			{ value: 'Sweatshirts'},			
+			{ value: 'Dresses'},
+			{ value: 'Jackets'},			
+			{ value: 'Pants'},
+			{ value: 'Cardigan'},			
+			{ value: 'Boots'},
+			{ value: 'Loafers'},			
+			{ value: 'Handbags'},
+			{ value: 'Hats'},			
+			{ value: 'Accessories'},
+			{ value: 'Home'},			
+			{ value: 'Shop'},			
+			{ value: 'Blog'},
+			{ value: 'About us'},			
+			{ value: 'Contact us'}
+		];
+		
+		$('.autocomplete-suggestions').css('max-height: initial');
 
-		console.log(config);
-		return config;
+		object.autocomplete({
+			lookup: countries,
+			onSelect: function (suggestion) {
+				console.log(suggestion);
+			}
+		});
+		
 	}
 
 	$(document).ready(function(){
-		$('.swiper-container').each(function(){
-			var $this = $(this);
-			new Swiper($this[0], getSwiperSettings($this));
-		});
-		
-		$('.show-popup').magnificPopup({
-			type: 'image'
-		});
+		initSwiper($('.swiper-container'));
+		initPopup($('.show-popup'));
+		initWaypoint($('.with-animated'));
+		initAutocomplete($('.search-products'));
 	});
 
 })(jQuery);
