@@ -4771,6 +4771,7 @@ body {
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 1.4;
+	overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -5405,6 +5406,7 @@ button:hover,
 .header-top {
 	background-color: #da8a67;
 	font-size: 13px;
+	z-index: 5;
 }
 .header-top .header-row-inner {
 	height: 40px;
@@ -5856,6 +5858,22 @@ button:hover,
 .autocomplete-suggestion:hover{
 	background-color: rgba(247, 247, 247, 0.9);
 }
+
+#gmap {
+	width: 90%;
+	height: 350px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.qqq {
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 
 @media (min-width: 1200px) {
 	.custom-col-20 {

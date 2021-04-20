@@ -10,6 +10,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Rubik&family=Spartan:wght@500;600&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="css/swiper-bundle.min.css">
 	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/photoswipe.css">
+	<link rel="stylesheet" href="css/default-skin/default-skin.css">
 	<link rel="stylesheet" href="css/style.css">	<!-- style -->
 </head>
 <body>
@@ -218,7 +220,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="pages/contact-us.html">
 							<span>Contact us</span>
 							</a>
 						</li>
@@ -348,7 +350,7 @@
 								<div class="inner">
 									<img src="img/products (compressed)/merak-product-3-2-min.jpg" alt="">
 									<div class="absolute content">
-										<a href="#" class="absolute"></a>
+										<a href="pages/single-product.html" class="absolute"></a>
 										<div class="btn-wrapper">
 											<a href="#" class="button btn-xx-small adapts">
 												<span>Select options</span>
@@ -1299,7 +1301,9 @@
 					<div class="banner">
 						<div class="img-wrapper">
 							<div class="img-inner">
-								<img src="img/merak-banner-img-3.jpg" alt="Skirts and dresses">
+								<a href="img/merak-banner-img-3.jpg" data-width="380" data-height="360">
+									<img src="img/merak-banner-img-3.jpg" alt="Skirts and dresses">
+								</a>
 							</div>
 						</div>
 						<div class="content-wrapper">
@@ -1317,7 +1321,9 @@
 					<div class="banner">
 						<div class="img-wrapper">
 							<div class="img-inner">
-								<img src="img/merak-banner-img-4.jpg" alt="Summer loafers">
+								<a href="img/merak-banner-img-4.jpg" data-width="380" data-height="360">
+									<img src="img/merak-banner-img-4.jpg" alt="Skirts and dresses">
+								</a>
 							</div>
 						</div>
 						<div class="content-wrapper">
@@ -1335,7 +1341,9 @@
 					<div class="banner">
 						<div class="img-wrapper">
 							<div class="img-inner">
-								<img src="img/merak-banner-img-5.jpg" alt="Collection of bags">
+								<a href="img/merak-banner-img-5.jpg" data-width="380" data-height="360">
+									<img src="img/merak-banner-img-5.jpg" alt="Skirts and dresses">
+								</a>
 							</div>
 						</div>
 						<div class="content-wrapper">
@@ -1409,14 +1417,83 @@
 			</div>
 		</div>
 	</div>
+	<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+		<!-- Background of PhotoSwipe. 
+			 It's a separate element as animating opacity is faster than rgba(). -->
+		<div class="pswp__bg"></div>
+	
+		<!-- Slides wrapper with overflow:hidden. -->
+		<div class="pswp__scroll-wrap">
+	
+			<!-- Container that holds slides. 
+				PhotoSwipe keeps only 3 of them in the DOM to save memory.
+				Don't modify these 3 pswp__item elements, data is added later on. -->
+			<div class="pswp__container">
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+				<div class="pswp__item"></div>
+			</div>
+	
+			<!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+			<div class="pswp__ui pswp__ui--hidden">
+	
+				<div class="pswp__top-bar">
+	
+					<!--  Controls are self-explanatory. Order can be changed. -->
+	
+					<div class="pswp__counter"></div>
+	
+					<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+	
+					<button class="pswp__button pswp__button--share" title="Share"></button>
+	
+					<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+	
+					<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+	
+					<!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+					<!-- element will get class pswp__preloader--active when preloader is running -->
+					<div class="pswp__preloader">
+						<div class="pswp__preloader__icn">
+						  <div class="pswp__preloader__cut">
+							<div class="pswp__preloader__donut"></div>
+						  </div>
+						</div>
+					</div>
+				</div>
+	
+				<div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+					<div class="pswp__share-tooltip"></div> 
+				</div>
+	
+				<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+				</button>
+	
+				<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+				</button>
+	
+				<div class="pswp__caption">
+					<div class="pswp__caption__center"></div>
+				</div>
+	
+			</div>
+	
+		</div>
+	
+	</div>
 	
 	<script src="js/jquery-3.6.0.min.js"></script>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/swiper-bundle.min.js"></script>
 	<script src="js/magnific-popup.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
 	<script src="js/jquery.autocomplete.min.js"></script>
 	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/photoswipe.min.js"></script>
+	<script src="js/photoswipe-ui-default.min.js"></script>
+	<script src="js/jquery.sticky-kit.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
