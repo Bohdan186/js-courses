@@ -202,7 +202,7 @@
 		getLoadingImage('show');
 
 		$.ajax({
-			url: `http://api.tvmaze.com/search/shows?q=girls`,
+			url: `https://api.tvmaze.com/search/shows?q=girls`,
 
 			success: function(data) {
 				renderShowList(data);
@@ -224,7 +224,7 @@
 		getLoadingImage('show');
 
 		$.ajax({
-			url: `http://api.tvmaze.com/search/shows?q=${q}`,
+			url: `https://api.tvmaze.com/search/shows?q=${q}`,
 
 			success: function(data) {
 				renderAutocomplete(data);
@@ -260,7 +260,7 @@
 	function getActors(filmId) {
 		
 		$.ajax({
-			url: `http://api.tvmaze.com/shows/${filmId}/cast`,
+			url: `https://api.tvmaze.com/shows/${filmId}/cast`,
 
 			success: function(data){
 				renderActors(data);
