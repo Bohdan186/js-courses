@@ -1,0 +1,175 @@
+@import 'reset.scss';
+@import 'bootstrap.min.scss';
+@import 'swiper-bundle.min.scss';
+@import 'magnific-popup.scss';
+
+body {
+	background-color: #444;
+}
+
+.header{
+	padding-top: 30px;
+	margin-bottom: 60px;
+	color: #fff;
+}
+
+.col-left {
+	display: flex;
+    justify-content: flex-start;
+}
+
+.col-right {
+	display: flex;
+    justify-content: flex-end;
+}
+
+.card {
+	border: none;
+	border-radius: 5px;
+	// height: 360px;
+}
+
+.logo-span {
+	color: #007BFF;
+}
+
+.search-form {
+	position: relative;
+	border-radius: 5px;
+	height: 40px;
+}
+
+.search-form,
+.search-input {
+	display: flex;
+	flex-grow: 1;
+}
+
+.search-input {
+	padding: 0px 20px 0px 20px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	color: #444;
+}
+
+.search-btn {
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	right: 0;
+	border: none;
+	outline: none;
+	padding: 0;
+	width: 100px;
+	border-radius: 5px;
+	background-color: #007BFF;
+	transition: all .4s ease;
+
+	&:hover {
+		background-color: #0069da;
+	}
+}
+
+.carusel {
+	margin-bottom: 60px;
+}
+
+.card-body {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background: rgba(27, 27, 27, 0.9);
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.card-text {
+	font-size: 14px;
+}
+
+.about-film-popup {
+    position: relative;
+    width: 992px;
+	height: 600px;
+    padding: 40px 20px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #444;
+    color: #fff;
+}
+
+.mfp-close-btn-in,
+.mfp-close {
+    color: #fff;
+}
+
+.actors  {
+	height: 461px;
+
+	.card-text {
+		font-size: 13px;
+		margin-bottom: 5px;
+	}
+}
+
+.card-img-overlay {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 0;
+
+	.text-bg {
+		background-color: rgba(27, 27, 27, 0.9);
+		padding: 0 1.25rem;
+	}
+}
+
+.loading-image {
+	position: fixed;
+	top: calc(50% - 100px);
+	left: calc(50% - 100px);
+	background: url(../img/img-loading.svg)center no-repeat;
+	width: 200px;
+	height: 200px;
+} 
+
+.info {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.title {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.autocomplete{
+    position: absolute;
+    top: 100%;
+    width: 95%;
+	z-index: 2;
+}
+
+.autocomplete-item{
+    display: flex;
+    height: 46px;
+    padding: 0 20px;
+    background-color: rgba(27, 27, 27, 1);
+    color: #0069da;
+    align-items: center;
+    font-weight: 600;
+    font-size: 20px;
+	cursor: pointer;
+	transition: all .4s ease;
+
+	&:hover {
+		background-color: rgb(39, 41, 46);
+	}
+}

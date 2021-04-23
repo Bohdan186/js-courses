@@ -4,12 +4,69 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Project 8</title>
+	<title>Project 8</title><link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col col-left">
+					<div class="logo">
+						<h2><span class="logo-span">Best</span>Films</h2>
+					</div>
+				</div>
+				<div class="col col-right">
+					<input type="text" class="search-input">
+					<div class="autocomplete">
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="carusel">
+		<div class="container-fluid">
+			<div class="swiper-container" data-options='{"loop":true, "mobile": 1,  "tablet": 3, "desktop": 4, "largeDesktop": 5, "spaceBetween": 20, "navigation":true}'>
+				<div class="swiper-wrapper film-list">
+				</div>
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="movie-schedule">
+		<div class="container">
+			<div class="movie-schedule-inner">
+				
+			</div>
+		</div>
+	</section>
+	
+	<div class="about-film-popup mfp-hide">
+		<div class="container-fluid">
+			<div class="row ">
+				<div class="col-8">
+					<div class="about-film">
+
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="swiper-container in-popup actors" data-options='{"direction": "vertical","loop": true, "mobile": 2, "tablet": 2, "desktop": 2, "largeDesktop": 2, "spaceBetween": 20}'>
+						<div class="swiper-wrapper actors-list">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="loading-image"></div>
 
 	<script src="js/jquery-3.6.0.min.js"></script>
+	<script src="js/swiper-bundle.min.js"></script>
+	<script src="js/magnific-popup.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>
