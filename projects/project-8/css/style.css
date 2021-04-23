@@ -11646,4 +11646,9 @@ body {
   background-color: #27292e;
 }
 
+.summary {
+  height: 200px;
+  overflow: auto;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -105,7 +105,6 @@
 					let filmId = $(this)[0].currItem.el.data('id');
 					console.log(filmId);
 					getFilmsById(filmId);
-					$('.actors-list').html('');
 					getActors(filmId);
 				},
 			},
@@ -192,7 +191,6 @@
 					<span class="autocomplete-item">${el.show.name}</span>
 				</a>
 			`);
-			initPopup($('.autocomplete a'));
 		});
 	}
 
@@ -208,6 +206,7 @@
 				renderShowList(data);
 				initSwiper();
 				initTooltip();
+
 				initPopup($('.carusel .btn'));
 			},
 
@@ -228,6 +227,7 @@
 
 			success: function(data) {
 				renderAutocomplete(data);
+				initPopup($('.autocomplete a'));
 			},
 
 			complete: function() {
@@ -263,7 +263,14 @@
 			url: `https://api.tvmaze.com/shows/${filmId}/cast`,
 
 			success: function(data){
+
+				if('undefined' !== typeof $('.in-popup')[0].swiper){
+					$('.in-popup')[0].swiper.destroy;
+					$('.actors-list').html('');
+				}
+				
 				renderActors(data);
+				console.log(data);
 				initSwiper($('.in-popup'));
 			},
 
@@ -285,6 +292,6 @@
 			
 			getFilmsForAutocomplete($(this).val());
 		});
-
 	});
+	
 })(jQuery);
