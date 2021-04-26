@@ -103,7 +103,6 @@
 			callbacks: {
 				open: function() {
 					let filmId = $(this)[0].currItem.el.data('id');
-					console.log(filmId);
 					getFilmsById(filmId);
 					getActors(filmId);
 				},
@@ -140,7 +139,6 @@
 	}
 
 	function renderAboutFilm(data) {
-		console.log(data);
 		let updated;
 
 		if(null === data.updated){
@@ -184,13 +182,35 @@
 	}
 
 	function renderAutocomplete(data) {
-		console.log(data);
 		data.forEach(function(el){	
 			$('.autocomplete').append(`
 				<a href=".about-film-popup" data-id="${el.show.id}">
 					<span class="autocomplete-item">${el.show.name}</span>
 				</a>
 			`);
+		});
+	}
+
+	function renderMovieSchedule(data) {
+		let i = 1;
+		let today = new Date().toDateString();
+		
+		$('.schedule-date').html(`Film schedule for <span class="logo-span">${today}</span>`);
+
+		data.forEach(function(el){
+
+			$('.movie-schedule-inner tbody').append(`
+				<tr>
+					<td>${i}</td>
+					<td>
+						<div class="td-content">
+							<a href=".about-film-popup" data-id="${el._embedded.show.id}">${el._embedded.show.name}</a>
+						</div>
+					</td>
+				</tr>
+			`);
+
+			i++;
 		});
 	}
 
@@ -265,12 +285,13 @@
 			success: function(data){
 
 				if('undefined' !== typeof $('.in-popup')[0].swiper){
-					$('.in-popup')[0].swiper.destroy;
+					console.log(typeof $('.in-popup')[0].swiper);
+					
 					$('.actors-list').html('');
+					$('.in-popup')[0].swiper.destroy();
 				}
 				
 				renderActors(data);
-				console.log(data);
 				initSwiper($('.in-popup'));
 			},
 
@@ -282,10 +303,31 @@
 		});
 	}
 
+	function getMovieSchedule() {
+		getLoadingImage('show');
+
+		$.ajax({
+			url: `https://api.tvmaze.com/schedule/web?date=2021-04-24`,
+
+			success: function(data) {
+				renderMovieSchedule(data);
+
+				initPopup($('.movie-schedule-inner tbody a'));
+			},
+
+			complete: function() {
+				getLoadingImage('hide');
+			},
+
+			error: serverError,
+		});
+	}
+
 	// DOCUMENT READY
 
 	$(document).ready(function(){
 		getFilmsForCarousel();
+		getMovieSchedule();
 
 		$('.search-input').on('keyup', function(){
 			$('.autocomplete').children().remove();
@@ -293,5 +335,5 @@
 			getFilmsForAutocomplete($(this).val());
 		});
 	});
-	
+
 })(jQuery);
